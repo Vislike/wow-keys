@@ -1,0 +1,7 @@
+## Interface: 120001
+## Version: v1
+## Title: !Keys
+## Notes: Answer !keys in party chat with m+ keys.
+## Author: Vislike <turtle> @ EU The Maelstrom
+
+keys.lua

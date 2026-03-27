@@ -1,6 +1,8 @@
 ## Interface: 120001
-## Version: v1
+## Version: @project-version@
 ## Title: !Keys
+## Category: Chat
+## IconTexture: Interface\Icons\inv_relics_hourglass
 ## Notes: Answer !keys in party chat with m+ keys.
 ## Author: Vislike <turtle> @ EU The Maelstrom
 

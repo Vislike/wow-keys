@@ -1,6 +1,6 @@
 -- local vars
 
-local string = string;
+local string, canaccessvalue = string, canaccessvalue;
 local mpKeyStone = 180653;
 local linkKeys, partyChat;
 
@@ -12,7 +12,7 @@ f:Hide();
 local function onEvent(self, event, ...)
 	if(event == "CHAT_MSG_PARTY" or event == "CHAT_MSG_PARTY_LEADER") then
 		local msg = ...;
-		if(string.lower(msg) == "!keys") then
+		if(canaccessvalue(msg) and string.lower(msg) == "!keys") then
 			linkKeys();
 		end
 	elseif(event == "ADDON_LOADED") then

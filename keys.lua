@@ -2,7 +2,7 @@
 
 local string, canaccessvalue = string, canaccessvalue;
 local mpKeyStone = 180653;
-local linkKeys, partyChat;
+local linkKeys, partyChat, debugPrint;
 
 -- frame
 
@@ -31,7 +31,7 @@ f:SetScript("OnEvent", onEvent);
 
 -- functionality
 
-linkKeys = function()
+linkKeys = function(debug)
 	local bag, slot;
 	local found = {};
 	for bag = 0, NUM_BAG_SLOTS do
@@ -41,11 +41,17 @@ linkKeys = function()
 			if(itemInfo and itemInfo.itemID) then
 				-- use id
 				if(itemInfo.itemID == mpKeyStone) then
+					if(debug) then
+						debugPrint("Confirmed Same Id: "..itemInfo.itemID);
+					end
 					found[#found+1] = itemInfo.hyperlink;
 				else
 					-- fallback
 					local itemName = GetItemInfo(itemInfo.itemID);
 					if(itemName and string.find(itemName, "Keystone")) then
+						if(debug) then
+							debugPrint("New Keystone Id: "..itemInfo.itemID);
+						end
 						found[#found+1] = itemInfo.hyperlink;
 					end
 				end
@@ -61,10 +67,14 @@ partyChat = function(msg)
 	if(IsInGroup(LE_PARTY_CATEGORY_HOME)) then
 		SendChatMessage(msg, "PARTY");
 	else
-		print("!keys: " .. msg);
+		debugPrint(msg);
 	end
 end
 
+debugPrint = function(msg)
+	print("!keys: " .. msg);
+end
+
 function ExclamationKeysDebugTrigger()
-	linkKeys();
+	linkKeys(true);
 end
